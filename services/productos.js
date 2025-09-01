@@ -15,3 +15,18 @@ const obtenerProductosPorID = (id ,callback) => {
         callback (err,results [0]);
     });
 };
+
+//crear un nuevo producto 
+
+const crearProducto = (producto, callback) => {
+    const { nombre, descripcion, precio, stock } = producto;
+    db.query(
+        'INSERT INTO productos (nombre, descripcion, precio, stock) values (?,?,?,?)', 
+        [nombre, descripcion, precio, stock],
+        (err,result) => {
+            if (err) return callback (err);
+            callback(null, { id: result.insertId, ...producto});
+        }
+    );
+};
+
