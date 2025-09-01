@@ -43,3 +43,17 @@ const actualizarProducto = (id,producto,callback) => {
     );
 };
 
+//eliminar un producto 
+const eliminarProducto = (id,callback) => {
+    db.query('DELETE FROM productos WHERE id = ?', [id],(err,result) => {
+        callback(err,result);
+    });
+};
+
+module.exports = {
+    obtenerProductos,
+    obtenerProductosPorID,
+    crearProducto,
+    actualizarProducto,
+    eliminarProducto
+}
