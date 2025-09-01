@@ -30,3 +30,16 @@ const crearProducto = (producto, callback) => {
     );
 };
 
+// actualizar un producto
+
+const actualizarProducto = (id,producto,callback) => {
+    const { nombre, descripcion, precio, stock } = producto;
+    db.query(
+        'UPDATE productos set nombre = ?, descripcion = ?, precio = ?, stock = ? WHERE id = ?',
+        [nombre, descripcion, precio, stock, id],
+        (err,result)=> {
+            callback(err, result);
+        }
+    );
+};
+
